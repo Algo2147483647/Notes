@@ -1,0 +1,322 @@
+
+### Discrete Channel
+
+- Property
+  - Channel Capacity   
+    $$
+    \begin{align*}
+    \left\{\begin{matrix}
+      I(x_i ; Y) &= \sum\limits_j p_{ij} \log \frac{p_{ij}}{q_j} = C  \quad ;\text{when } p_i > 0  \\ \\
+      I(x_i ; Y) &= \sum\limits_j p_{ij} \log \frac{p_{ij}}{q_j} ≤ C  \quad ;\text{when } p_i = 0
+    \end{matrix}\right.
+    \end{align*}
+    $$
+
+    方程组可求得 Channel Capacity . $\mathbb P(y_j|x_i)$写作$p_{ij}$, $\mathbb P(x_i)$写作$p_i$, $\mathbb P(y_j)$写作$q_j$.
+
+    - Proof  
+      问题表示为$p_{ij}$确定且已知, 求$I(X;Y)$的最大值及其$p_i$的优化问题,
+      $$
+      \begin{align*}
+        \max \quad& I(X;Y) = \sum_{i,j} p_{ij} p_i \log p_{ij} - \sum_j q_j \log q_j  \\
+        s.t. \quad& p_i ≥ 0  \\
+          & \sum_i p_i = 1
+      \end{align*}
+      $$
+
+      Lagrange function,
+      $$
+      L(p_i, λ, ν) = -\sum_{i,j} p_{ij} p_i \log p_{ij} + \sum_j q_j \log q_j + \sum_i λ_i (- p_i) + ν \left(\sum_i p_i - 1\right) \tag{Lagrange function}
+      $$
+
+      $$
+      \begin{align*}
+        \Rightarrow \frac{∂ L}{∂ p_i} |_{p_i = p_i^*}  
+        &= -\sum_j p_{ij} (\log p_{ij} - \log q_j - \log e) - λ_i^* + ν^* \tag{Derivation,$\frac{∂ q_j}{∂ p_i} = \frac{∂ \sum_i p_i p_{ij}}{∂ p_i} = p_{ij}$}  \\
+        &= -\sum_j p_{ij} \log \frac{p_{ij}}{q_j} + \log e - λ_i^* + ν^* \tag{$\sum_j p_{ij} = 1$}  \\
+        &= 0
+      \end{align*}
+      $$
+
+      KKT conditions,
+      $$
+      \begin{align*}
+        p_i^* &≥ 0  \\
+        \sum_i p_i^* &= 1  \\
+        λ_i &≥ 0  \\
+        λ_i p_i^* &= 0  \\
+        \sum_j p_{ij} \log \frac{p_{ij}}{q_j^*} &= \log e - λ_i^* + ν^*
+      \end{align*}
+      $$
+
+      第5式得$λ_i = -\sum_j p_{ij} \log \frac{p_{ij}}{q_j^*} + \log e + ν^*$, 回代消去$λ$, 
+      $$
+      \begin{align*}
+        p_i^* &≥ 0  \\
+        \sum_i p_i^* &= 1  \\
+        \sum_j p_{ij} \log \frac{p_{ij}}{q_j^*} &≥ \log e + ν^*  \\
+        \left(-\sum_j p_{ij} \log \frac{p_{ij}}{q_j^*} + \log e + ν^*\right) p_i &= 0
+      \end{align*}
+      $$
+  
+- Include
+  * Discrete Noiseless Channel
+    - 无损信道, 每个输出只对应一个输入.
+    - 确定信道, 每个输入只对应一个输出.
+    - 无损确定信道, 输入输出一一对应.
+
+    - Property  
+      Channel Capacity : 
+      $$C = \log\ \min(N_x, N_y)$$ 
+
+  * Discrete Symmetric Channel
+    - 弱对称信道
+      - Property
+        $$C = H(Y) - H(p_{1i},...)$$
+
+    - 强对称信道
+      - Property
+        $$C = \log N_y - H(p_{1i},...)$$
+        因为强对称信道的输出也是等概率的, 所以$H(Y) = \log N_y$.
+
+  * 信道矩阵可逆的信道
+    - Property
+      - Channel Capacity 
+        $$\begin{align*}
+          C &= \log\left( \sum_i 2^{β_i} \right)  \\
+          &= \left\{\begin{matrix}
+            \mathbb P_{Yi} = \frac{2^{β_i}}{\sum_j 2^{β_j}}  \\
+            \mathbb P_X^T = \mathbb P_Y^T P^{-1}
+          \end{matrix}\right.  \\
+          β &= -P^{-1} h  \\
+          h &= \left(\begin{matrix} H(P_{1j}) \\ \vdots \\ H(P_{nj}) \end{matrix}\right)
+        \end{align*}$$
+
+#### 时间离散连续信道
+  * 加性噪声信道
+    - Define
+      $$
+      y = x + z
+      $$
+
+    - Property
+      - $\mathbb P(y|x) = p_Z(y - x)$
+      - $h(Y|X) = h(Z)$
+      - $C = \max_{p(x)} I(X ; Y) = \max_{p(x)} h(Y) - h(Z)$
+        - Proof
+          $$
+          \begin{align*}
+            y &= x + z  \\
+            C &= \max I(X;Y)  \tag{定义}  \\
+              &= \max ( h(Y) - h(Y|X) )  \\
+              &= \max ( h(Y) - h(X+Z|X) )  \tag{代入}  \\
+              &= \max ( h(Y) - h(Z|X) )  \\
+              &= \max ( h(Y) - h(Z) )  \tag{$X,Z$统计独立}
+          \end{align*}
+          $$
+
+    * 加性Gauss噪声信道
+      - Define
+        $$
+        y = x + z \quad z \sim N(0, σ^2)
+        $$
+
+      - Property
+        - Channel Capacity 
+          $$
+          C = B \log\left(1 + \frac{P}{N}\right)
+          $$
+
+          - Proof
+            $$
+            \begin{align*}
+              y &= x + z  \quad z \sim N(0, σ^2)  \tag{信道}\\
+              C &= \max ( H(Y) - H(Z) )  \tag{性质}\\
+                &= \max ( H(Y) - \frac{1}{2} \log(2 π e σ^2) )  \tag{Gauss分布微分熵}
+            \end{align*}
+            $$
+
+            $\because$ 限功率最大熵: 平均功率受限的随机变量, 当$Y$为Gauss分布时, $H(Y)$ 取得最大值.
+            $$
+            \begin{align*}
+              C &= \frac{1}{2} \log(2 π e (P + σ^2)) - \frac{1}{2} \log(2 π e σ^2)  \tag{限功率最大熵}\\
+                &= \frac{1}{2} \log\left(1 + \frac{P}{N}\right)  \tag{$σ^2 = N$ 噪声功率}\\
+                &= B \log\left(1 + \frac{P}{N}\right)  \tag{2B速率采样}
+            \end{align*}
+            $$
+
+    * 并联加性Gauss噪声信道
+      - Property
+        - 达到Channel Capacity 的功率分配
+          $$
+          \begin{align*}
+            P_i &= \max\left\{ 0, \frac{1}{ν^*} - σ_i^2 \right\}  \\
+            \sum P_i &= P
+          \end{align*}
+          $$
+
+          $P_i$是第i个独立子信道的信号功率, $σ_i^2$是子信道的噪声功率, $\frac{1}{ν^*}$是一常数. 方程组可求出$P_i$.
+
+        - Channel Capacity 
+          $$C = \frac{1}{2} \sum_{i=1}^N \log \left(1+\frac{P_i}{σ_i^2}\right)$$
+          
+        - Proof  
+          (解凸优化)
+          原问题形式,
+          $$\begin{align*}
+            \max \quad& C = \sum C_i = \frac{1}{2} \sum \log\left(1 + \frac{P_i}{σ_i^2}\right)  \\
+            s.t. \quad& P_i ≥ 0  \\
+              & \sum P_i^* = P
+          \end{align*}$$
+
+          将问题简化, 令$\frac{P_i}{P}$归一化写作$x_i$, $σ_i^2$写作$α_i$, 
+
+          $$\begin{align*}
+            \min \quad& - \sum \log(α_i + x_i)  \\
+            s.t. \quad& x ⪰ 0  \\
+              & 1^T x = 1
+          \end{align*}$$
+          
+          Lagrange 函数,
+          $$
+          L(x, λ, ν) = - \sum \log (α_i + x_i) + \sum λ_i (- x_i) + ν (1^T x - 1)
+          $$
+
+          KKT 条件,
+          $$
+          \begin{align*}
+            x^* &⪰ 0  \\
+            1^T x^* &= 1  \\
+            λ &⪰ 0  \\
+            λ_i x_i &= 0  \\
+            \frac{∂ L}{∂ x_i} |_{x_i = x_i^*} &= - \frac{1}{α_i + x_i^*} - λ_i^* + ν^* = 0
+          \end{align*}
+          $$
+
+          第5式得$λ_i = ν^* - \frac{1}{α_i + x_i^*}$, 回代消去$λ$, 
+          $$
+          \begin{align*}
+            x^* &⪰ 0  \\
+            1^T x^* &= 1  \\
+            ν^* &≥ \frac{1}{α_i + x_i^*}  \\
+            \left(ν^* - \frac{1}{α_i + x_i^*}\right) x_i^* &= 0
+          \end{align*}
+          $$
+
+          (1) 当$x_i^* ≠ 0$时, 即$x_i^* > 0$
+            $$\begin{align*}
+              \Rightarrow \quad& ν^* = \frac{1}{α_i + x_i^*}  \\
+              \Rightarrow \quad& x_i^* = \frac{1}{ν^*} - α_i > 0  \\
+              \Rightarrow \quad& ν^* < \frac{1}{α_i}
+            \end{align*}$$
+
+          (2) 当$x_i^* = 0$时, 
+            $$\Rightarrow \quad ν^* ≥ \frac{1}{α_i}$$
+
+          (综上)
+            $$\begin{align*}
+              x_i &= \max\left\{ 0, \frac{1}{ν^*} - α_i \right\}\\
+              1^T x^* &= 1
+            \end{align*}$$
+
+          - Note  
+            结果称为注水方法, $α_i$ 为第i区域的池底高度, 向整个区域注水, 注水总量为$\sum x_i^* = 1$, 则水面高度为$\frac{1}{ν} = α_i + x_i^*$, 每个区域的水深$x_i^*$即是其最优解.
+
+  * 加性Gauss噪声+衰落信道
+    * SISO信道
+      - Property
+        - Channel Capacity 
+
+    * MIMO信道
+      - Property
+        - Channel Capacity 
+          $$C = \log_2 \left|I + \frac{P_x}{P_z} · H R_{xx} H^H\right|$$
+          - Proof
+            $$\begin{align*}
+              \boldsymbol y &= \boldsymbol H \boldsymbol x + \boldsymbol ω \quad; ω \sim N(\boldsymbol μ, \boldsymbol Σ)  \tag{信道}\\
+              C &= \max ( H(Y) - H(Y|X) )  \\
+                &= \max ( H(Y) - H(H X + W|X) )  \\
+                &= \max ( H(Y) - H(W) )  \\
+                &= \max ( H(Y) ) - \frac{N}{2} \log (2 π e |\boldsymbol Σ_Z|^{\frac{1}{N}})
+            \end{align*}$$
+
+            平均功率受限的随机变量, 当$Y$为循环对称复Gauss分布时, $H(Y)$ 取得最大值.
+            $$\begin{align*}
+              \boldsymbol Σ_Y &= \frac{P_x}{P_z} · \boldsymbol H \boldsymbol Σ_X \boldsymbol H^H + \boldsymbol Σ_Z  \tag{自协方差性质}
+            \end{align*}$$
+
+            $$\begin{align*}
+              C &= \frac{N}{2} \log(2 π e |\boldsymbol Σ_Y|^{\frac{1}{N}}) - \frac{N}{2} \log (2 π e |\boldsymbol Σ_Z|^{\frac{1}{N}})  \tag{$\boldsymbol Σ$自协方差矩阵}\\
+                &= \frac{1}{2} \log \frac{|\boldsymbol Σ_Y|}{|\boldsymbol Σ_Z|}  \\
+                &= \frac{1}{2} \log \frac{|\frac{P_x}{P_z} · \boldsymbol H \boldsymbol Σ_X \boldsymbol H^H + \boldsymbol Σ_Z|}{|\boldsymbol Σ_Z|}  \tag{代入}  \\
+                &= \frac{1}{2} \log \left|\frac{P_x}{P_z} · \boldsymbol H \boldsymbol Σ_X \boldsymbol H^H + I\right|
+            \end{align*}$$
+
+
+
+
+- 混合模数预编码 (毫米波MIMO空间稀疏预编码)
+	- \bf{Paper.}
+		- Spatially Sparse Precoding in Millimeter Wave MIMO Systems
+
+	\Situation
+		- 基本参数
+			- 发送天线 $N_t$个
+			- 接收天线 $N_r$个
+			- 射频电路 $N_{t,RF}, N_{r,RF}$个
+			- 传输数据流 $N_s$个
+
+			- 预编码矩阵
+				- 发送基带预编码矩阵 $\.F_{BB} \in C^{N_{t,RF} × N_s}$
+				- 发送射频预编码矩阵 $\.F_{RF} \in C^{N_t × N_{t,RF}}$
+				- 接收基带预编码矩阵 $\.W_{BB} \in C^{N_{r,RF} × N_s}$
+				- 接收射频预编码矩阵 $\.W_{RF} \in C^{N_r × N_{r,RF}}$
+		
+			- 信源信号 $\.s \in C^{N_s}, \.s ~ CN(0, I_{N_s})$
+			- 信道矩阵 $\.H$
+			- 发送信号 $\.x = \sqrt{ρ} \.F_{RF} \.F_{BB} \.s$ 
+			- 接收信号 
+				$
+					\.y &= \sqrt{ρ} \.H \.x + \.n 
+						&= \sqrt{ρ} \.H \.F_{RF} \.F_{BB} \.s + \.n 
+				$
+			- 接收处理后信号 
+				$
+					\.y' &= \.W_{BB}^H \.W_{RF}^H \.y
+						&= \sqrt{ρ} \.W_{BB}^H \.W_{RF}^H \.H \.x + \.n 
+						&= \sqrt{ρ} \.W_{BB}^H \.W_{RF}^H \.H \.F_{RF} \.F_{BB} \.s + \.W_{BB}^H \.W_{RF}^H \.n 
+				$
+		
+		- 信道容量
+			$C = \log_2 (\left| I_{N_s} + \/{ρ}{N_s} \.R_N^{-1} (\.W_{BB}^H \.W_{RF}^H \.H \.F_{RF} \.F_{BB}) (\.W_{BB}^H \.W_{RF}^H \.H \.F_{RF} \.F_{BB})^H \right|)$ 
+		
+		- 模拟移相器的使用, 射频预编码矩阵受到恒模约束.
+			$
+				(\.F_{RF}^{(i)} \.F_{RF}^{(i)}^H)_{l,l} &= N_t^{-1}
+				(\.W_{RF}^{(i)} \.W_{RF}^{(i)}^H)_{l,l} &= N_r^{-1}
+			$
+		- 发送端受到总功率约束
+			$||\.F_{RF} \.F_{BB}||_F^2 = N_s$
+
+	\Problem
+		$
+			\max_{\.F_{RF},\.F_{BB},\.W_{RF},\.W_{BB}} \qu& C = \log_2 (| \.I_{N_s} + \/{ρ}{N_s} R_N^{-1} (\.W_{BB}^H \.W_{RF}^H \.H \.F_{RF} \.F_{BB}) (\.W_{BB}^H \.W_{RF}^H \.H \.F_{RF} \.F_{BB})^H |)
+			s.t. \qu& \.F_{RF} \in \mathcal F_{RF}
+				\qu& \.W_{RF} \in \mathcal W_{RF}
+				& || \.F_{RF} \.F_{BB}||_F^2 = N_s
+		$
+		已知信道矩阵$H$, 最大化信道容量$C$, 求$\.F_{RF},\.F_{BB},\.W_{RF},\.W_{BB}$这4个预编码矩阵.
+
+	\Algorithm
+		- 发送端问题简化
+			\Problem
+				$
+					\max_{\.F_{RF} \.F_{BB}} \qu& \log_2 (| \.I + \/{ρ}{N_s \sigma_z^2} (\.H \.F_{RF} \.F_{BB}) (\.H \.F_{RF} \.F_{BB})^H |)
+					s.t. \qu& \.F_{RF} \in \mathcal F_{RF}
+						& || \.F_{RF} \.F_{BB}||_F^2 = N_s
+				$
+
+		- 接受端问题简化
+			\Problem
+
+

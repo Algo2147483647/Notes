@@ -1,0 +1,3 @@
+[submodule "Math"]
+	path = Math
+	url = https://github.com/Algo2147483647/Math.git
