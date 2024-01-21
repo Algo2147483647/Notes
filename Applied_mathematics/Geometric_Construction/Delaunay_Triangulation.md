@@ -1,10 +1,10 @@
-# $Delaunay\ Triangulation$
+# Delaunay Triangulation
 
 [TOC]
 
 Delaunay triangulation is a fundamental algorithm in computational geometry, primarily used for creating a triangulation of a set of points in a plane (or in 3D) such that no point is inside the circumcircle of any triangle.
 
-# Definition
+## Define
 
 Delaunay triangulation for a given set $P$ of discrete points in a general position is a triangulation $DT(P)$ such that no point in $P$ is inside the circumcircle of any triangle in $DT(P)$. Delaunay triangulations maximize the minimum of all the angles of the triangles in the triangulation; they tend to avoid sliver triangles.
 
