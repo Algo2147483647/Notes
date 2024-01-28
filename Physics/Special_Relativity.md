@@ -1,43 +1,53 @@
-# $Special\ Relativity$
+# Special Relativity
+
 [TOC]
 
-# 相对性原理, 相互作用的传播速度  
+## Scene
 
-- Theorem 相对性原理  
-  所有自然定律, 在所有惯性参考系中都相同.
+## Phenomenon & Experiment
 
-- Theorem 相互作用的传播速度   
-  相互作用的最大传播速度, 在所有惯性参考系中都一样(相对性原理可得). 可以证明, 这个速度是光在真空中的速度. (取$c\to \infty$, 即可过渡到经典力学.)
-  $$c = 2.998 × 10^8 m/s$$ 
+- 实验表明, 相对性原理是有效的.
+- 实验表明, 瞬时相互作用在自然界不存在, 相互作用的传播需要时间.
 
-- Property
-  - 时间是相对的, 不同参考系中时间的流逝速度不同. "两个不同事件之间有一定的事件间隔"这句话, 只有在指定哪一个参考系下才有意义, 因为在参考系$K_1$同时发生的两个事件, 在参考系$K_2$可能是不同时的.
-  
-- Experiment
-  - 实验表明, 相对性原理是有效的.
-  - 实验表明, 瞬时相互作用在自然界不存在, 相互作用的传播需要时间.
-  - 1881年Michelson-Morley干涉实验, 表明光速与其传播方向无关. 而按经典力学,光应在地球速度同方向$(v+c)$,比反方向$(v-c)$更快一点. 因此, Galilean变换的绝对时间假设$(t=t')$错了, 不同参考系下时间流逝的速度不同.
+### Michelson-Morley interference experiment
 
-# Minkowski Space  
+1881年Michelson-Morley干涉实验, 表明光速与其传播方向无关. 而按经典力学,光应在地球速度同方向$(v+c)$,比反方向$(v-c)$更快一点. 因此, Galilean变换的绝对时间假设$(t=t')$错了, 不同参考系下时间流逝的速度不同.
 
-## Define  
+<img src="assets/mirror-parts-interferometer-Michelson-light-beam-angle.jpg" alt="img" style="zoom:10%;" />
+
+## Description
+
+### The relativity principle
+所有自然定律, 在所有惯性参考系中都相同.
+
+### The propagation speed of interactions
+相互作用的最大传播速度, 在所有惯性参考系中都一样(相对性原理可得). 可以证明, 这个速度是光在真空中的速度. (取$c\to \infty$, 即可过渡到经典力学.)
+$$c = 2.998 × 10^8 m/s$$ 
+
+- 时间是相对的, 不同参考系中时间的流逝速度不同. "两个不同事件之间有一定的事件间隔"这句话, 只有在指定哪一个参考系下才有意义, 因为在参考系$K_1$同时发生的两个事件, 在参考系$K_2$可能是不同时的.
+
+### Minkowski Space
+
 Minkowski时空是三维欧几里得空间和时间的组合四维流形$(t, x, y, z)$.
 
-* 事件
-  - Define  
-    一个事件由其发生的位置和时间所描述$(t, x, y, z)$.
-* 事件间隔
-  - Define
-    $$\begin{align*}
-      s_{12} &= (c^2 (t_2-t_1)^2 - (x_2-x_1)^2 - (y_2-y_1)^2 - (z_2-z_1)^2)^{1/2}  \\
-      -d s &= (c^2 \mathrm d t^2 - \mathrm d x^2 - \mathrm d y^2 - \mathrm d z^2)^{1/2}
-    \end{align*}$$
-  - Property
-    - 两个事件的间隔在任何惯性系下都一样. 这个不变性,就是光速不变的数学表示.        
-    - 类时间隔, 仅在时间上有变化的间隔, 故间隔为实数.
-    - 类空间隔, 仅在空间上有变化的间隔, 故间隔为虚数.
+#### Event
 
-# Lorentz Transformation
+- Define
+  一个事件由其发生的位置和时间所描述$(t, x, y, z)$.
+
+#### Event interval
+
+- Define
+  $$\begin{align*}
+    s_{12} &= (c^2 (t_2-t_1)^2 - (x_2-x_1)^2 - (y_2-y_1)^2 - (z_2-z_1)^2)^{1/2}  \\
+    -d s &= (c^2 \mathrm d t^2 - \mathrm d x^2 - \mathrm d y^2 - \mathrm d z^2)^{1/2}
+  \end{align*}$$
+- Property
+  - 两个事件的间隔在任何惯性系下都一样. 这个不变性,就是光速不变的数学表示.        
+  - 类时间隔, 仅在时间上有变化的间隔, 故间隔为实数.
+  - 类空间隔, 仅在空间上有变化的间隔, 故间隔为虚数.
+
+### Lorentz Transformation
 
 $$
 \begin{align*}
@@ -117,18 +127,20 @@ $$
       \end{align*}
       $$
 
-    
-    - Example
-      * 钟慢效应
-      * 尺缩效应
-      
-    * 速度变换
-      - Theorem Lorentz变换下的速度变换 
-        $$
-        \Rightarrow v_x = \frac{v'_x + V}{1 + v'_x \frac{V}{c^2}}, \quad  v_y = \frac{v'_y \sqrt{1 - \frac{V^2}{c^2}}}{1 + v'_x \frac{V}{c^2}},\quad  v_z = \frac{v'_z \sqrt{1 - \frac{V^2}{c^2}}}{1 + v'_x \frac{V}{c^2}}
-        $$
-        - Proof 
-          $$
-          \boldsymbol v = \frac{d\boldsymbol r}{dt},\quad  v' = \frac{d\boldsymbol r'}{dt}
-          $$
+#### Transform of speed
+$$
+\Rightarrow v_x = \frac{v'_x + V}{1 + v'_x \frac{V}{c^2}}, \quad  v_y = \frac{v'_y \sqrt{1 - \frac{V^2}{c^2}}}{1 + v'_x \frac{V}{c^2}},\quad  v_z = \frac{v'_z \sqrt{1 - \frac{V^2}{c^2}}}{1 + v'_x \frac{V}{c^2}}
+$$
+- Proof 
+$$
+\boldsymbol v = \frac{d\boldsymbol r}{dt},\quad  v' = \frac{d\boldsymbol r'}{dt}
+$$
 
+
+## Example
+
+### Time dilation effect
+### Length contraction effect
+
+### 隧道佯谬
+### The Twin Paradox

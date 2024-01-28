@@ -1,8 +1,26 @@
-# $General\ Relativity$
+# General Relativity
 
 [TOC]
 
-# 弯曲时空 & 度规
+## Scene
+
+## Phenomenon & Experiment
+
+### Perihelion precession of Mercury
+
+This anomalous rate of precession of the perihelion of Mercury's orbit was first recognized in 1859 as a problem in celestial mechanics, by Urbain Le Verrier. His re-analysis of available timed observations of transits of Mercury over the Sun's disk from 1697 to 1848 showed that the actual rate of the precession disagreed from that predicted from Newton's theory by 38″ (arcseconds) per tropical century (later re-estimated at 43″ by Simon Newcomb in 1882). Subsequently, Einstein's 1915 general theory accounted for Mercury's anomalous precession. In general relativity, this remaining precession, or change of orientation of the orbital ellipse within its orbital plane, is explained by gravitation being mediated by the curvature of spacetime. Einstein showed that general relativity agrees closely with the observed amount of perihelion shift. This was a powerful factor motivating the adoption of general relativity.
+
+<img src="assets/Apsidendrehung.png" alt="img" style="zoom:5%;" />
+
+### LIGO: discovery of gravitational waves
+
+On 11 February 2016, the **Laser Interferometer Gravitational-Wave Observatory** (LIGO) collaboration announced the first observation of gravitational waves, from a signal detected at 09:50:45 GMT on 14 September 2015 of two black holes with masses of 29 and 36 solar masses merging about 1.3 billion light-years away. During the final fraction of a second of the merger, it released more than 50 times the power of all the stars in the observable universe combined. The signal increased in frequency from 35 to 250 Hz over 10 cycles (5 orbits) as it rose in strength for a period of 0.2 second. The mass of the new merged black hole was 62 solar masses. Energy equivalent to three solar masses was emitted as gravitational waves. The signal was seen by both LIGO detectors in Livingston and Hanford, with a time difference of 7 milliseconds due to the angle between the two detectors and the source. 
+
+<img src="assets/LIGO_measurement_of_gravitational_waves.svg" alt="LIGO_measurement_of_gravitational_waves" style="zoom: 33%;" /><img src="assets/OIP.FHQn4YvQW5fGH3iyDRZSQgAAAA" alt="img" style="zoom:35%;" />
+
+## Description
+
+### Curved Space-Time & Metric
 
 在n维时空中，度规是一个对称的二次微分形式（双线性型），通常表示为g。度规g具有以下特性：
 
@@ -32,7 +50,7 @@
 
 度规张量是广义相对论中的核心概念，它描述了引力场如何影响时空的几何结构，允许我们在弯曲时空中进行物理量的测量和运动的描述。在求解爱因斯坦场方程等方程时，度规张量的具体形式和分量通常是未知的，需要通过实际问题的边界条件和物理情境来确定。
 
-## 测地线
+#### Geodesic
 
 **定义**
 
@@ -62,9 +80,13 @@ $$
 
 为了得到具体的轨迹，你需要为特定的度规解上述的微分方程。例如，对于施瓦西度规（描述一个非旋转黑洞的度规），解测地线方程会给你物体在黑洞周围的轨迹，包括经典的光的弯曲轨迹。
 
-# 爱因斯坦引力场方程
+### Einstein gravitational field equation
 
-爱因斯坦-希尔伯特动作的形式并不是随意选择的，而是基于一系列的物理和数学原理。以下是这个动作如何得到的概述：
+$$
+G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
+$$
+
+
 
 1. **基本原则**
    
@@ -131,7 +153,9 @@ $$
 
 通过这个推导过程，我们可以得到爱因斯坦的引力场方程，它描述了引力场如何由物质分布所决定，并建立了广义相对论的基础。这个方程在描述引力场的行为和预测引力场的效应方面非常成功，例如描述了黑洞、宇宙膨胀和引力透镜等现象。
 
-## Schwarzschild's solution & Black Hole
+## Example
+
+### Schwarzschild's solution & Black Hole
 
 施瓦西解是描述一个静态、对称、无电荷的黑洞的解。
 
@@ -196,4 +220,4 @@ $$
 
 
 
-## 引力波
+### Gravitational Wave
